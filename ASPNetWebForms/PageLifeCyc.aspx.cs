@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 
 namespace ASPNetWebForms
 {
-
-    public partial class PageLiftCycleWithContrls : System.Web.UI.Page
+    public partial class PageLifeCyc : System.Web.UI.Page
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
             //Work and It will assign the values to label.
-            lblName.Text = lblName.Text + "<br/>" + "PreInit";
+//            lblName.Text = lblName.Text + "<br/>" + "PreInit";
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -76,7 +69,7 @@ namespace ASPNetWebForms
         protected void Page_UnLoad(object sender, EventArgs e)
         {
             //Work and it will not effect label contrl, view stae and post back data.
-            lblName.Text = lblName.Text + "<br/>" + "UnLoad";
+            //lblName.Text = lblName.Text + "<br/>" + "UnLoad";
         }
     }
 }

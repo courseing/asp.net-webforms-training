@@ -50,6 +50,7 @@ public partial class _Default : System.Web.UI.Page
     //  Event 4 - OnPreLoad
     protected override void OnPreLoad(EventArgs e)
     {
+
         /*
           1. Raised after the page loads view state for itself and all controls, and after it processes postback data that is included with the Request instance.   
           2. Before the Page instance raises this event, it loads view state for itself and all controls, and then processes any postback data included with the Request instance.
@@ -140,5 +141,11 @@ public partial class _Default : System.Web.UI.Page
           5. During the unload stage, the page and its controls have been rendered, so you cannot make further changes to the response stream.
           6. If you attempt to call a method such as the Response.Write method, the page will throw an exception.
         */
+    }
+
+    protected void btnGetTotal_Click(object sender, EventArgs e)
+    {
+       // lblTotal.Text = Session["ShoppingCartTotal"].ToString();
+        Response.Write(Request.Cookies["ProductName"].Value);
     }
 }

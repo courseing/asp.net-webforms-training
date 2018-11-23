@@ -148,9 +148,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="PageLifeCyc.aspx" />
     <Content Include="PageLiftCycle.aspx" />
-    <Content Include="PageLiftCycleWithContrls.aspx" />
-    <Content Include="PageLiftCycleWithViewState.aspx" />
+    <Content Include="Products.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -183,6 +183,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="StatesManagement.aspx" />
     <Content Include="Site.Master" />
     <Content Include="Team.aspx" />
     <Content Include="Team1.aspx" />
@@ -227,19 +228,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PageLifeCyc.aspx.cs">
+      <DependentUpon>PageLifeCyc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageLifeCyc.aspx.designer.cs">
+      <DependentUpon>PageLifeCyc.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageLiftCycle.aspx.cs">
       <DependentUpon>PageLiftCycle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PageLiftCycleWithContrls.aspx.cs">
-      <DependentUpon>PageLiftCycleWithContrls.aspx</DependentUpon>
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PageLiftCycleWithViewState.aspx.cs">
-      <DependentUpon>PageLiftCycleWithViewState.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatesManagement.aspx.cs">
+      <DependentUpon>StatesManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatesManagement.aspx.designer.cs">
+      <DependentUpon>StatesManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
