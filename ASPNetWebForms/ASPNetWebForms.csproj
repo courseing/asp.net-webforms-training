@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExternalDAL">
+      <HintPath>Packages\ExternalDAL.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -148,6 +151,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="FormValidation.aspx" />
     <Content Include="PageLifeCyc.aspx" />
     <Content Include="PageLiftCycle.aspx" />
     <Content Include="Products.aspx" />
@@ -187,6 +191,7 @@
     <Content Include="Site.Master" />
     <Content Include="Team.aspx" />
     <Content Include="Team1.aspx" />
+    <Content Include="ValidatorControls.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -225,9 +230,17 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormValidation.aspx.cs">
+      <DependentUpon>FormValidation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormValidation.aspx.designer.cs">
+      <DependentUpon>FormValidation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Product.cs" />
     <Compile Include="PageLifeCyc.aspx.cs">
       <DependentUpon>PageLifeCyc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -282,6 +295,13 @@
     <Compile Include="Team1.aspx.designer.cs">
       <DependentUpon>Team1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ValidatorControls.aspx.cs">
+      <DependentUpon>ValidatorControls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ValidatorControls.aspx.designer.cs">
+      <DependentUpon>ValidatorControls.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,7 +310,12 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{52384fc0-c0e3-4098-b0b6-28063be1c8df}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -63,6 +63,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
+                <asp:Label ID="lblTotalActiveUsers" runat="server" ></asp:Label>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
         </div>

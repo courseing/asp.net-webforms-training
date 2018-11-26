@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ASPNetWebForms
+namespace ASPNetWebForms.ADONet
 {
-    public partial class SiteMaster : MasterPage
+    public partial class SQLAdapter : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblTotalActiveUsers.Text = Application["Counter"].ToString();
+
         }
     }
 }

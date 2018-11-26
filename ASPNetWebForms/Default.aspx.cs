@@ -145,7 +145,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnGetTotal_Click(object sender, EventArgs e)
     {
-       // lblTotal.Text = Session["ShoppingCartTotal"].ToString();
-        Response.Write(Request.Cookies["ProductName"].Value);
+        // lblTotal.Text = Session["ShoppingCartTotal"].ToString();
+        //Response.Write(Request.Cookies["ProductName"].Value);
+
+        //Response.Write(Application["Status"].ToString());
+        Response.Redirect("~/product.aspx?Id=5");
     }
 }
