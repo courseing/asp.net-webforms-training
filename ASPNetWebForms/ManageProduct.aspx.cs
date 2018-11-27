@@ -22,12 +22,13 @@ namespace WebAuth
         protected void btnSave_Click(object sender, EventArgs e)
         {
             ProductDAL product = new ProductDAL();
-            product.Name = txtProductName.Text;
-            if (!product.AddRecord())
-            {
-                Response.Write("Product could not be saved");
-            }
-                           
+            product.InsertData();
+            //product.Name = txtProductName.Text;
+            //if (!product.AddRecord())
+            //{
+            //    Response.Write("Product could not be saved");
+            //}
+
         }
     }
 }
