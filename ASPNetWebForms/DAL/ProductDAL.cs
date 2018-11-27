@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASPNetWebForms.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,14 +10,45 @@ namespace ASPNetWebForms.DAL
 {
     public class ProductDAL
     {
+
         public string Name { get; set; }
         public static string ConnectionString { get; set; }
+
+        public void UpdateRecord()
+        {
+            //DataSet ds;
+            //using (SqlConnection conn = new SqlConnection(ConnectionString))
+            //{
+            //    //SqlCommand cmd = new SqlCommand("select * from Products", conn);
+            //    SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products", conn);
+            //    ds = new DataSet();
+            //    sqlda.Fill(ds);
+            //}
+
+            DataSet ds;
+            SqlCommandBuilder cmdBuilder;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                //SqlCommand cmd = new SqlCommand("select * from Products", conn);
+                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products", conn);
+                cmdBuilder = new SqlCommandBuilder(sqlda);
+
+                ds = new DataSet();
+                sqlda.Fill(ds);
+
+                //ds.Tables[0].Rows[0]["Name"] = "Jack1";
+                DataRow dr = ds.Tables[0].NewRow() ;
+                dr["Name"] = "Tabs";
+                ds.Tables[0].Rows.Add(dr);
+
+                sqlda.Update(ds, ds.Tables[0].ToString());
+            }
+        }
 
         static ProductDAL()
         {
             ConnectionString = "Data Source = localhost; Initial Catalog = WebAuth; Integrated Security = True; Connect Timeout = 15; Encrypt = False; Packet Size = 4096";
         }
-
         public bool InsertData()
         {
 
@@ -39,7 +71,6 @@ namespace ASPNetWebForms.DAL
             }
             return true;
         }
-
         public void GetResultUsingSelectStmt()
         {
             SqlConnection conn = null;
@@ -124,7 +155,6 @@ namespace ASPNetWebForms.DAL
                 }
             }
         }
-
         public void GetResultUsingProcParam()
         {
             SqlConnection conn = null;
@@ -184,7 +214,6 @@ namespace ASPNetWebForms.DAL
                 }
             }
         }
-
         public bool UpdateData()
         {
             SqlConnection cn = new SqlConnection();
@@ -250,7 +279,6 @@ namespace ASPNetWebForms.DAL
             //Console.ReadLine();
             return true;
         }
-
         public bool GetDataSet()
         {
             using (SqlConnection conn = new SqlConnection(ConnectionString))
@@ -279,27 +307,30 @@ namespace ASPNetWebForms.DAL
             }
             return true;
         }
-        public bool GetResults()
+        public  Product GetResults()
         {
+            //string Name;
+            Product prd = new Product(); 
+
             using (SqlConnection connection = new SqlConnection("Data Source=localhost;Initial Catalog=WebAuth;Integrated Security=True;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
             {
                 //SqlCommand command = new SqlCommand(
                 //  "SELECT CategoryID, CategoryName FROM dbo.Categories;" +
                 //  "SELECT EmployeeID, LastName FROM dbo.Employees",
 
-                //SqlCommand command = new SqlCommand("GetResultsWhatEver",connection);
+                SqlCommand command = new SqlCommand("GetResultsWhatEver",connection);
                 //command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                    Console.WriteLine("\t{0}\t{1}", reader[""],
-                        reader[""]);
+                //  reader["Id"]
+                prd.Name = reader["name"].ToString();
 
                     while (reader.Read())
                     {
-                        Console.WriteLine("\t{0}\t{1}", reader.GetInt32(0),
-                            reader.GetString(1));
+                        prd.Name = reader["Name"].ToString();
+                        //Console.WriteLine("\t{0}\t{1}", reader.GetInt32(0),reader.GetString(1));
                     }
 
                 reader.NextResult();
@@ -310,7 +341,7 @@ namespace ASPNetWebForms.DAL
                 }
 
             }
-            return true;
+            return prd;
         }
         public bool GetResult()
         {

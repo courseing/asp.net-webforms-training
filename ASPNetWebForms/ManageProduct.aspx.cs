@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using ASPNetWebForms.DAL;
+using ASPNetWebForms.Model;
 
 namespace WebAuth
 {
@@ -21,8 +22,11 @@ namespace WebAuth
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            Product prd;//= new Product();
             ProductDAL product = new ProductDAL();
-            product.InsertData();
+            product.UpdateRecord();
+            //prd = product.GetResults();
+            //Response.Write(prd.Name);
             //product.Name = txtProductName.Text;
             //if (!product.AddRecord())
             //{
