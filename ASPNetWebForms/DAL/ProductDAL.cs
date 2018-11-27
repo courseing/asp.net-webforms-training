@@ -30,18 +30,18 @@ namespace ASPNetWebForms.DAL
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 //SqlCommand cmd = new SqlCommand("select * from Products", conn);
-                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products", conn);
+                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products;select * from aspnetusers", conn);
                 cmdBuilder = new SqlCommandBuilder(sqlda);
 
                 ds = new DataSet();
                 sqlda.Fill(ds);
 
                 //ds.Tables[0].Rows[0]["Name"] = "Jack1";
-                DataRow dr = ds.Tables[0].NewRow() ;
+                DataRow dr = ds.Tables["Products"].NewRow() ;
                 dr["Name"] = "Tabs";
                 ds.Tables[0].Rows.Add(dr);
 
-                sqlda.Update(ds, ds.Tables[0].ToString());
+                sqlda.Update(ds, ds.Tables["Products"].ToString());
             }
         }
 
