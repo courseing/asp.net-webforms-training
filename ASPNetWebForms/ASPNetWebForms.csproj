@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="ADONet\GridView.aspx" />
     <Content Include="ADONet\SQLAdapter.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -209,6 +210,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADONet\GridView.aspx.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADONet\GridView.aspx.designer.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ADONet\SQLAdapter.aspx.cs">
       <DependentUpon>SQLAdapter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

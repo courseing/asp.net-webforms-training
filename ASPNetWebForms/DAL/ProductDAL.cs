@@ -37,14 +37,38 @@ namespace ASPNetWebForms.DAL
                 sqlda.Fill(ds);
 
                 //ds.Tables[0].Rows[0]["Name"] = "Jack1";
-                DataRow dr = ds.Tables["Products"].NewRow() ;
-                dr["Name"] = "Tabs";
+                DataRow[] dr = ds.Tables["Products"].Select("cost=20") ;
+                //dr["Name"] = "Tabs";
                 ds.Tables[0].Rows.Add(dr);
 
                 sqlda.Update(ds, ds.Tables["Products"].ToString());
             }
         }
+        public void UpdateRowsAtOnceSQLDataAdapter()
+        {
 
+            DataSet ds;
+            SqlCommandBuilder cmdBuilder;
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                //SqlCommand cmd = new SqlCommand("select * from Products", conn);
+                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products", conn);
+                cmdBuilder = new SqlCommandBuilder(sqlda);
+
+                ds = new DataSet();
+                sqlda.Fill(ds);
+
+                //ds.Tables[0].Rows[0]["Name"] = "Jack1";
+                DataRow[] dr = ds.Tables[0].Select("Name='Tabs'");
+
+                foreach(DataRow dr1 in dr)
+                {
+                    dr1["Name"] = "Tab1";
+                }
+
+                sqlda.Update(dr);
+            }
+        }
         static ProductDAL()
         {
             ConnectionString = "Data Source = localhost; Initial Catalog = WebAuth; Integrated Security = True; Connect Timeout = 15; Encrypt = False; Packet Size = 4096";
@@ -259,7 +283,8 @@ namespace ASPNetWebForms.DAL
             //Console.WriteLine("Product Name before Update : " + ProductsDataSet.Tables["Products"].Rows[0]["Name"]);
 
             //Modify the value of the CustName field.
-            ProductsDataSet.Tables["Products"].Rows[0]["Name"] = "Jack";
+
+            //ProductsDataSet.Tables["Products"].Rows[0]["Name"] = "Jack";
             DataRow dr;
             dr = ProductsDataSet.Tables[0].NewRow();
             dr["Name"] = "Mobile";
