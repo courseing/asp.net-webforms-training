@@ -14,6 +14,26 @@ namespace ASPNetWebForms.DAL
         public string Name { get; set; }
         public static string ConnectionString { get; set; }
 
+        public DataSet GetProducts()
+        {
+            string Query = "select Id,Name from Products";
+            SQLManager manager = new SQLManager();
+            return manager.GetDataSet(Query);
+        }
+
+        public bool UpdateProduct(Product product)
+        {
+            bool isSuccess;
+            List<ProcParameters> procParams = new List<ProcParameters>();
+            procParams.Add(new ProcParameters("@ProductId", product.Id.ToString(), DbType.Int32, ParameterDirection.Input));
+            procParams.Add(new ProcParameters("@Name", product.Name, DbType.String, ParameterDirection.Input));
+
+            SQLManager manager = new SQLManager();
+            isSuccess = manager.UpdateRecord("Products_CRUD", procParams);
+
+            return isSuccess;
+        }
+
         public void UpdateRecord()
         {
             //DataSet ds;
@@ -30,22 +50,21 @@ namespace ASPNetWebForms.DAL
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 //SqlCommand cmd = new SqlCommand("select * from Products", conn);
-                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Products;select * from aspnetusers", conn);
+                SqlDataAdapter sqlda = new SqlDataAdapter("select * from Persons", conn);
                 cmdBuilder = new SqlCommandBuilder(sqlda);
 
                 ds = new DataSet();
-                sqlda.Fill(ds);
+                sqlda.Fill(ds,"Persons");
 
-                //ds.Tables[0].Rows[0]["Name"] = "Jack1";
-                DataRow[] dr = ds.Tables["Products"].Select("cost=20") ;
-                //dr["Name"] = "Tabs";
-                ds.Tables[0].Rows.Add(dr);
-
-                sqlda.Update(ds, ds.Tables["Products"].ToString());
+                ds.Tables[0].Rows[0]["Name"] = "Jack1";
+                sqlda.Update(ds, ds.Tables["Persons"].ToString());
             }
         }
         public void UpdateRowsAtOnceSQLDataAdapter()
         {
+
+            List<Product> prd = new List<Product>();
+            prd[0].Name = "";
 
             DataSet ds;
             SqlCommandBuilder cmdBuilder;

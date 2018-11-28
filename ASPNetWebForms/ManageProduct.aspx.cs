@@ -24,7 +24,7 @@ namespace WebAuth
         {
             Product prd;//= new Product();
             ProductDAL product = new ProductDAL();
-            product.UpdateRowsAtOnceSQLDataAdapter();
+            product.UpdateRecord();
             //prd = product.GetResults();
             //Response.Write(prd.Name);
             //product.Name = txtProductName.Text;
